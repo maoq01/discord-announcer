@@ -1,0 +1,28 @@
+{
+  "name": "discord-announcer",
+  "version": "1.0.0",
+  "description": "channel announcer bot for discord",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@types/koa-mount": "^3.0.1",
+    "@types/lodash": "^4.14.123",
+    "discord.js": "^11.4.2",
+    "koa": "^2.7.0",
+    "koa-mount": "^4.0.0",
+    "koa-trie-router": "^2.1.6",
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.11",
+    "ts-node": "^8.0.3"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "typescript": "^3.4.3",
+    "typescript-tslint-plugin": "^0.3.1"
+  },
+  "scripts": {
+    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "martina.oqvist@gmail.com",
+  "license": "ISC"
+}
