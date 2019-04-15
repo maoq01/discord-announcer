@@ -9,10 +9,10 @@
         "noImplicitAny": true,
         "outDir": "./dist",
         "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "plugins": [
             {
-                "name": "typescript-tslint-plugin",
-                "allowSyntheticDefaultImports": true,
+                "name": "typescript-tslint-plugin"
             }
         ],
         "types": ["node", "koa-mount"]

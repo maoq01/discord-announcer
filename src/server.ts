@@ -12,13 +12,13 @@ const _ = Object.freeze({
 let usersLastTTS = {}
 
 export class Server {
-    private port: number;
+    private port: string;
     private botToken: string;
     private app: Koa;
     private discordBot: Client;
     private channelId: string;
 
-    constructor(port: number, botToken: string, recipientChannelId: string ) {
+    constructor(port: string, botToken: string, recipientChannelId: string ) {
         this.port = port;
         this.botToken = botToken;
         this.app = new Koa();
