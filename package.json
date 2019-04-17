@@ -21,7 +21,7 @@
     "typescript-tslint-plugin": "^0.3.1"
   },
   "scripts": {
-    "build": "tsc --watch",
+    "build": "tsc",
     "start": "./dist/index"
   },
   "author": "martina.oqvist@gmail.com",
