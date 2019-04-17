@@ -1,21 +1,26 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
-        "paths": { "*": ["types/*"] },
+        "outDir": "dist",
+        "rootDir": "src",
+        "esModuleInterop": true,
         "module": "commonjs",
         "target": "es2017",
-        "inlineSourceMap": true,
-        "inlineSources": true,
+        "moduleResolution": "node",
+        "paths": { "*": ["types/*"] },
+        "baseUrl": ".",
+        "sourceMap": true,
         "noImplicitAny": true,
-        "outDir": "./dist",
-        "esModuleInterop": true,
+        "inlineSources": true,
         "allowSyntheticDefaultImports": true,
+        "lib": [
+            "es2017"
+        ],
         "plugins": [
             {
                 "name": "typescript-tslint-plugin"
             }
         ],
-        "types": ["node", "koa-mount"]
+        "types": ["node"]
     },
     "include": [
         "./src/**/*"

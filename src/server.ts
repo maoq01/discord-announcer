@@ -1,7 +1,7 @@
 'use strict';
 
 import Koa from 'koa';
-import Discord, { Client, GuildMember, VoiceChannel, TextChannel } from 'discord.js';
+import { Client, GuildMember, VoiceChannel, TextChannel } from 'discord.js';
 import { get, set } from 'lodash';
 
 const _ = Object.freeze({
@@ -22,19 +22,26 @@ export class Server {
         this.port = port;
         this.botToken = botToken;
         this.app = new Koa();
-        this.discordBot = new Discord.Client();
+        this.discordBot = new Client();
         this.channelId = recipientChannelId;
     }
 
     public start() {
         this.app.listen(this.port, () => {
             console.log("Server running on port", this.port);
-            this.discordBot.login(this.botToken);
-            try {
-                this.actOnChannelEvents();
-            } catch (err) {
-                console.log(err)
-            }
+
+            this.discordBot.on('error', (error: Error) => {
+                console.error(error);
+                process.exit(1);
+            });
+            
+            this.discordBot.login(this.botToken)
+            .catch((error: Error) => {
+                console.error(error);
+                process.exit(1);
+            });
+
+            this.actOnChannelEvents();
         });
     }
 
@@ -85,15 +92,23 @@ export class Server {
                     _.set(usersLastTTS, userName, new Date());
                 }
 
-                console.log("trying to send message:", messageContent)
+                console.log("trying to send message:", messageContent);
                 const channel: TextChannel = guildMember.guild.channels.get(this.channelId) as TextChannel;
+
                 try {
-                    await channel.send(messageContent, {tts: ttsFlag});
-                } catch (err) {
-                    console.log(err);
-                    throw (err);
+                    await channel.send(messageContent, { tts: ttsFlag })
+                    .then(() => {
+                        console.log("message sent @", new Date());
+                    })
+                    .catch((error: Error) => {
+                        console.error(error);
+                        process.exit(1);
+                    });
+                } catch (error) {
+                    console.error(error);
+                    process.exit(1);
                 }
-                console.log("message sent @", new Date())
+                
             }
         });
     }

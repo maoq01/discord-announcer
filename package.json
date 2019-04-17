@@ -1,8 +1,9 @@
 {
   "name": "discord-announcer",
   "version": "1.0.0",
+  "repository": "https://github.com/maoq01/discord-announcer.git",
   "description": "channel announcer bot for discord",
-  "main": "src/index.ts",
+  "main": "dist/index",
   "dependencies": {
     "@types/koa-mount": "^3.0.1",
     "@types/lodash": "^4.14.123",
@@ -20,9 +21,8 @@
     "typescript-tslint-plugin": "^0.3.1"
   },
   "scripts": {
-    "start": "npm run-script watch-server",
-    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --watch",
+    "start": "./dist/index"
   },
   "author": "martina.oqvist@gmail.com",
   "license": "ISC"
